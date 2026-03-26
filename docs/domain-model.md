@@ -1,3 +1,6 @@
+# Domain Model
+
+```mermaid
 classDiagram
   class Product {
     +string id
@@ -77,3 +80,4 @@ classDiagram
   QuoteEngine ..> PriceBook : uses
   QuoteEngine ..> ZoneRule : uses
   QuoteEngine --> QuoteBreakdown : returns
+```
