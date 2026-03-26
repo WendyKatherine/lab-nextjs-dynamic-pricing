@@ -1,6 +1,3 @@
-# Domain Model
-
-```mermaid
 classDiagram
   class Product {
     +string id
@@ -35,7 +32,7 @@ classDiagram
     +string version
     +number setupCost
     +number applicationPerUnit
-    +Record~ProductCategoryCode, number~ baseCostsByCategory
+    +map baseCostsByCategory
   }
 
   class VolumeTier {
@@ -63,15 +60,20 @@ classDiagram
     +number unitPrice
   }
 
+  class QuoteEngine {
+    +buildQuote()
+  }
+
   Product "1" --> "*" ProductArea : availableAreas
   QuoteInput "1" --> "*" SelectedArea : selectedAreas
   QuoteInput "1" --> "1" LocationInput : location
   PriceBook "1" --> "*" VolumeTier : volumeTiers
-  LocationInput --> ZoneRule : resolves against
+  LocationInput --> ZoneRule : resolvesAgainst
   QuoteInput --> Product : references
-  QuoteInput ---> QuoteEngine
-  Product -----> QuoteEngine
-  PriceBook ---> QuoteEngine
-  ZoneRule ----> QuoteEngine
-  QuoteEngine ---> QuoteBreakdown
-  SelectedArea --> ProductArea
+  SelectedArea --> ProductArea : pointsTo
+
+  QuoteEngine ..> QuoteInput : uses
+  QuoteEngine ..> Product : uses
+  QuoteEngine ..> PriceBook : uses
+  QuoteEngine ..> ZoneRule : uses
+  QuoteEngine --> QuoteBreakdown : returns
