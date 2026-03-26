@@ -69,3 +69,9 @@ classDiagram
   PriceBook "1" --> "*" VolumeTier : volumeTiers
   LocationInput --> ZoneRule : resolves against
   QuoteInput --> Product : references
+  QuoteInput ---> QuoteEngine
+  Product -----> QuoteEngine
+  PriceBook ---> QuoteEngine
+  ZoneRule ----> QuoteEngine
+  QuoteEngine ---> QuoteBreakdown
+  SelectedArea --> ProductArea
