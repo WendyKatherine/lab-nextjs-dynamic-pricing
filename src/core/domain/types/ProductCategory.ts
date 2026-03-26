@@ -1,0 +1,1 @@
+export type ProductCategoryCode = "tshirt" | "hoodie" | "hat";
