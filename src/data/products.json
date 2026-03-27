@@ -1,0 +1,111 @@
+[
+  {
+    "id": "prod-tshirt-001",
+    "slug": "classic-tshirt",
+    "name": "Classic T-Shirt",
+    "pricingCategory": "tshirt",
+    "defaultTechnique": "screen-print",
+    "allowedTechniques": ["screen-print", "dtf"],
+    "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    "views": {
+      "front": "/mock/tshirt-blank-front.png",
+      "back":  "/mock/tshirt-blank-back.png"
+    },
+    "variations": [
+      {
+        "colorName": "White",
+        "colorHex": "#f5f5f5",
+        "views": {
+          "front": "/mock/tshirt-white-front.png",
+          "back":  "/mock/tshirt-white-back.png"
+        }
+      },
+      {
+        "colorName": "Black",
+        "colorHex": "#1a1a1a",
+        "views": {
+          "front": "/mock/tshirt-black-front.png",
+          "back":  "/mock/tshirt-black-back.png"
+        }
+      }
+    ],
+    "areas": [
+      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.00 },
+      { "id": "back-center", "view": "back",  "label": "Back Center",  "addOnPerUnit": 0.50 }
+    ]
+  },
+  {
+    "id": "prod-hoodie-001",
+    "slug": "pullover-hoodie",
+    "name": "Pullover Hoodie",
+    "pricingCategory": "hoodie",
+    "defaultTechnique": "screen-print",
+    "allowedTechniques": ["screen-print", "embroidery", "dtf"],
+    "sizes": ["S", "M", "L", "XL", "2XL"],
+    "views": {
+      "front": "/mock/hoodie-blank-front.png",
+      "back":  "/mock/hoodie-blank-back.png",
+      "left":  "/mock/hoodie-blank-left.png"
+    },
+    "variations": [
+      {
+        "colorName": "Black",
+        "colorHex": "#1a1a1a",
+        "views": {
+          "front": "/mock/hoodie-black-front.png",
+          "back":  "/mock/hoodie-black-back.png",
+          "left":  "/mock/hoodie-black-left.png"
+        }
+      },
+      {
+        "colorName": "Navy",
+        "colorHex": "#1b2a4a",
+        "views": {
+          "front": "/mock/hoodie-navy-front.png",
+          "back":  "/mock/hoodie-navy-back.png",
+          "left":  "/mock/hoodie-navy-left.png"
+        }
+      }
+    ],
+    "areas": [
+      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.00 },
+      { "id": "back-center", "view": "back",  "label": "Back Center",  "addOnPerUnit": 0.75 },
+      { "id": "left-sleeve", "view": "left",  "label": "Left Sleeve",  "addOnPerUnit": 1.25 }
+    ]
+  },
+  {
+    "id": "prod-hat-001",
+    "slug": "structured-hat",
+    "name": "Structured Hat",
+    "pricingCategory": "hat",
+    "defaultTechnique": "embroidery",
+    "allowedTechniques": ["embroidery"],
+    "sizes": ["OS"],
+    "views": {
+      "front": "/mock/hat-blank-front.png",
+      "back":  "/mock/hat-blank-back.png"
+    },
+    "variations": [
+      {
+        "colorName": "Black",
+        "colorHex": "#1a1a1a",
+        "views": {
+          "front": "/mock/hat-black-front.png",
+          "back":  "/mock/hat-black-back.png"
+        }
+      },
+      {
+        "colorName": "Khaki",
+        "colorHex": "#c3b091",
+        "views": {
+          "front": "/mock/hat-khaki-front.png",
+          "back":  "/mock/hat-khaki-back.png"
+        }
+      }
+    ],
+    "areas": [
+      { "id": "front-panel", "view": "front", "label": "Front Panel", "addOnPerUnit": 0.00 },
+      { "id": "back-panel",  "view": "back",  "label": "Back Panel",  "addOnPerUnit": 0.50 }
+    ]
+  }
+]
