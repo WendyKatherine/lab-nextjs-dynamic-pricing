@@ -1,8 +1,8 @@
-type ProductView = "front" | "back" | "left" | "right";
+import type { ProductView } from "./ProductView";
 
 export interface ProductArea {
   id: string;
-  name: string;
   view: ProductView;
+  label: string;
   addOnPerUnit: number;
 }
