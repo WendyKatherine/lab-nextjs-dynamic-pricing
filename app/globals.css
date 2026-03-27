@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "@wendy/retro-tech-foundation/css/core.css";
+@import "@wendy/retro-tech-foundation/css/web.css";
+@import "@wendy/retro-tech-foundation/css/themes/phosphor.css";
+@import "@wendy/retro-tech-foundation/css/recipes.css";
 
 :root {
   --background: #ffffff;
