@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Product } from "@/src/core/domain/entities/Product";
 import type { QuoteBreakdown } from "@/src/core/domain/types/QuoteBreakdown";
+import { validatePostalCodeFormat } from "@/src/core/domain/validation/postalCode";
 import { QuoteBuilderWindow } from "./QuoteBuilderWindow";
 import { QuoteBreakdownWindow } from "./QuoteBreakdownWindow";
 import { QuoteConsole } from "./QuoteConsole";
@@ -28,6 +29,8 @@ export function QuoteController({ products }: Props) {
   const [size, setSize] = useState<string>(first?.sizes[0] ?? "");
   const [technique, setTechnique] = useState<string>(first?.defaultTechnique ?? "");
 
+  const [postalCodeError, setPostalCodeError] = useState<string | null>(null);
+
   const [activeTheme, setActiveTheme] = useState<Theme>("phosphor");
 
   // ── Request state ────────────────────────────────────────────
@@ -51,6 +54,26 @@ export function QuoteController({ products }: Props) {
     setTechnique(product.defaultTechnique);
   }
 
+  function handleCountryChange(c: "US" | "CA") {
+    setCountry(c);
+    setPostalCodeError(null);
+  }
+
+  function handlePostalCodeChange(p: string) {
+    setPostalCode(p);
+    if (postalCodeError) setPostalCodeError(null);
+  }
+
+  function handlePostalCodeBlur() {
+    const result = validatePostalCodeFormat(country, postalCode);
+    if (result.valid) {
+      setPostalCode(result.normalized);
+      setPostalCodeError(null);
+    } else {
+      setPostalCodeError(result.reason);
+    }
+  }
+
   function handleAreaToggle(id: string) {
     setSelectedAreaIds((prev) => {
       if (prev.includes(id)) {
@@ -63,6 +86,12 @@ export function QuoteController({ products }: Props) {
 
   async function handleSubmit() {
     if (!selectedProduct || selectedAreaIds.length === 0) return;
+
+    const postalValidation = validatePostalCodeFormat(country, postalCode);
+    if (!postalValidation.valid) {
+      setPostalCodeError(postalValidation.reason);
+      return;
+    }
 
     setStatus("loading");
     setBreakdown(null);
@@ -141,14 +170,16 @@ export function QuoteController({ products }: Props) {
           quantity={quantity}
           country={country}
           postalCode={postalCode}
+          postalCodeError={postalCodeError}
           selectedAreaIds={selectedAreaIds}
           size={size}
           technique={technique}
           isLoading={status === "loading"}
           onProductChange={handleProductChange}
           onQuantityChange={setQuantity}
-          onCountryChange={setCountry}
-          onPostalCodeChange={setPostalCode}
+          onCountryChange={handleCountryChange}
+          onPostalCodeChange={handlePostalCodeChange}
+          onPostalCodeBlur={handlePostalCodeBlur}
           onAreaToggle={handleAreaToggle}
           onSizeChange={setSize}
           onTechniqueChange={setTechnique}

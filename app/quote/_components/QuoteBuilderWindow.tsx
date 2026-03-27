@@ -34,6 +34,7 @@ interface Props {
   quantity: string;
   country: "US" | "CA";
   postalCode: string;
+  postalCodeError: string | null;
   selectedAreaIds: string[];
   size: string;
   technique: string;
@@ -42,6 +43,7 @@ interface Props {
   onQuantityChange: (q: string) => void;
   onCountryChange: (c: "US" | "CA") => void;
   onPostalCodeChange: (p: string) => void;
+  onPostalCodeBlur: () => void;
   onAreaToggle: (id: string) => void;
   onSizeChange: (s: string) => void;
   onTechniqueChange: (t: string) => void;
@@ -54,9 +56,9 @@ interface Props {
 
 export function QuoteBuilderWindow({
   products, selectedProduct,
-  productId, quantity, country, postalCode,
+  productId, quantity, country, postalCode, postalCodeError,
   selectedAreaIds, size, technique, isLoading,
-  onProductChange, onQuantityChange, onCountryChange, onPostalCodeChange,
+  onProductChange, onQuantityChange, onCountryChange, onPostalCodeChange, onPostalCodeBlur,
   onAreaToggle, onSizeChange, onTechniqueChange, onSubmit,
   activeTheme, onThemeChange,
 }: Props) {
@@ -119,11 +121,16 @@ export function QuoteBuilderWindow({
               <input
                 type="text"
                 className="rt-input"
-                placeholder={country === "US" ? "e.g. 90210" : "e.g. M5H 2N2"}
+                placeholder={country === "US" ? "90210 or 12345-6789" : "M5H 2N2"}
                 value={postalCode}
                 onChange={(e) => onPostalCodeChange(e.target.value)}
-                required
+                onBlur={onPostalCodeBlur}
               />
+              {postalCodeError && (
+                <span style={{ fontSize: "var(--rt-text-xs)", color: "var(--rt-danger)" }}>
+                  {postalCodeError}
+                </span>
+              )}
             </FieldGroup>
           </div>
 
