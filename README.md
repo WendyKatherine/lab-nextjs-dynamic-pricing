@@ -14,9 +14,11 @@ The goal of this lab is to demonstrate:
 
 ## Preview
 
-```md
-![Quote Dashboard Screenshot](./docs/screenshots/v1.png)
-```
+![Quote Dashboard Screenshot](docs/screenshots/v1.png)
+
+## Domain Model
+
+[View the domain model](docs/domain-model.md)
 
 ---
 
