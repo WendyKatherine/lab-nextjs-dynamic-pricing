@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getDynamicQuote } from "@/src/core/application/use-cases/GetDynamicQuote";
+import { validatePostalCodeFormat } from "@/src/core/domain/validation/postalCode";
 
 // ------------------------------------------------------------
 // Request schema
@@ -13,9 +14,18 @@ const selectedAreaSchema = z.object({
 const locationSchema = z.object({
   country: z.enum(["US", "CA"]),
   postalCode: z.string().min(1),
+}).superRefine((val, ctx) => {
+  const result = validatePostalCodeFormat(val.country, val.postalCode);
+  if (!result.valid) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["postalCode"],
+      message: result.reason,
+    });
+  }
 });
 
-const quoteRequestSchema = z.object({
+export const quoteRequestSchema = z.object({
   productId: z.string().min(1),
   quantity: z.number().int().positive(),
   selectedAreas: z.array(selectedAreaSchema).min(1),
