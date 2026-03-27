@@ -1,5 +1,6 @@
 import type { QuoteBreakdown } from "@/src/core/domain/types/QuoteBreakdown";
 import type { QuoteStatus } from "./QuoteController";
+import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowControls";
 
 // ── Local primitives ────────────────────────────────────────────────────────
 
@@ -43,16 +44,18 @@ interface Props {
   status: QuoteStatus;
   breakdown: QuoteBreakdown | null;
   error: string | null;
+  activeTheme: Theme;
+  onThemeChange: (theme: Theme) => void;
 }
 
-export function QuoteBreakdownWindow({ status, breakdown, error }: Props) {
+
+export function QuoteBreakdownWindow({ status, breakdown, error, activeTheme, onThemeChange }: Props) {
+
   return (
     <article className="rt-window">
       <header className="rt-window__titlebar">
         <div className="rt-window__controls">
-          <Dot color="var(--rt-danger)" />
-          <Dot color="var(--rt-warning)" />
-          <Dot color="var(--rt-success)" />
+          <ThemeWindowControls activeTheme={activeTheme} onThemeChange={onThemeChange} />
         </div>
         <h2 className="rt-window__title">quote-breakdown</h2>
         <span className="rt-badge" style={{ color: statusColor[status] }}>{status}</span>
@@ -100,7 +103,7 @@ export function QuoteBreakdownWindow({ status, breakdown, error }: Props) {
           <div style={{ display: "grid", gap: "var(--rt-space-4)" }}>
 
             {/* Cost components */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--rt-space-3)" }}>
+            <div className="quote-kpi-row">
               <KpiItem label="Setup Cost"       value={`$${breakdown.setupCost.toFixed(2)}`} />
               <KpiItem label="Volume Multiplier" value={`×${breakdown.volumeMultiplier.toFixed(2)}`} mono />
               <KpiItem label="Base Cost"         value={`$${breakdown.baseCost.toFixed(2)}`} />
@@ -110,13 +113,13 @@ export function QuoteBreakdownWindow({ status, breakdown, error }: Props) {
             </div>
 
             {/* Subtotal + zone rate */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--rt-space-3)" }}>
+            <div className="quote-kpi-row">
               <KpiItem label="Subtotal"    value={`$${breakdown.subtotalBeforePostal.toFixed(2)}`} />
               <KpiItem label="Postal Rate" value={`${breakdown.postalRatePct}%`} mono />
             </div>
 
             {/* Total + Unit Price — emphasized */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--rt-space-3)" }}>
+            <div className="quote-kpi-row">
               <div className="rt-panel rt-panel--inset rt-kpi" style={{ borderColor: "var(--rt-primary)" }}>
                 <span className="rt-kpi__label">Total</span>
                 <strong className="rt-kpi__value" style={{

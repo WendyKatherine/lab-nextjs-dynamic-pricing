@@ -4,27 +4,139 @@
 @import "@wendy/retro-tech-foundation/css/themes/phosphor.css";
 @import "@wendy/retro-tech-foundation/css/recipes.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Map Tailwind font utilities to the retro-tech font variables */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--rt-font-sans);
+  --font-mono: var(--rt-font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.rt-theme-dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 120ms ease, box-shadow 120ms ease;
+}
+
+.rt-theme-dot:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+[data-rt-theme="phosphor"] {
+  --rt-glass-bg:             rgba(255, 255, 255, 0.18);
+  --rt-glass-border:         rgba(255, 255, 255, 0.45);
+  --rt-glass-border-soft:    rgba(255, 255, 255, 0.28);
+  --rt-glass-highlight:      rgba(255, 255, 255, 0.72);
+  --rt-glass-highlight-soft: rgba(255, 255, 255, 0.28);
+}
+
+.rt-theme-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rt-theme-control {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  inline-size: 12px;
+  block-size: 12px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.rt-theme-control__dot {
+  inline-size: 10px;
+  block-size: 10px;
+  border-radius: 999px;
+  display: block;
+  background: var(--rt-theme-dot-color);
+  opacity: 0.8;
+  border: 0.5px solid color-mix(in srgb, var(--rt-theme-dot-ring) 28%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--rt-theme-dot-ring) 12%, transparent),
+    0 0 8px color-mix(in srgb, var(--rt-theme-dot-ring) 26%, transparent);
+  transition:
+    transform 140ms ease,
+    opacity 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease;
+}
+
+.rt-theme-control:hover .rt-theme-control__dot {
+  opacity: 0.95;
+  transform: scale(1.05);
+}
+
+.rt-theme-control.is-active .rt-theme-control__dot {
+  opacity: 1;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--rt-theme-dot-ring) 72%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.rt-theme-control:focus-visible {
+  outline: none;
+}
+
+.rt-theme-control:focus-visible .rt-theme-control__dot {
+  box-shadow:
+    0 0 0 2px var(--rt-bg),
+    0 0 0 4px color-mix(in srgb, var(--rt-theme-dot-ring) 25%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* ── Dashboard fixed-height layout ─────────────────────────────────────── */
+
+.rt-app-shell {
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rt-terminal__body {
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+/* ── Quote page layout ──────────────────────────────────────────────────── */
+
+.quote-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rt-space-3);
+}
+
+.quote-kpi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rt-space-3);
+}
+
+@media (max-width: 768px) {
+  .rt-app-shell {
+    padding: var(--rt-space-4);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 480px) {
+  .rt-app-shell {
+    padding: var(--rt-space-3);
+  }
+
+  .quote-field-row,
+  .quote-kpi-row {
+    grid-template-columns: 1fr;
+  }
 }

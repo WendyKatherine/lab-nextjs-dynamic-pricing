@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import type { QuoteStatus } from "./QuoteController";
+import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowControls";
 
 function Dot({ color }: { color: string }) {
   return (
@@ -23,21 +25,28 @@ const statusColor: Record<QuoteStatus, string> = {
 interface Props {
   lines: string[];
   status: QuoteStatus;
+  activeTheme: Theme;
+  onThemeChange: (theme: Theme) => void;
 }
 
-export function QuoteConsole({ lines, status }: Props) {
+export function QuoteConsole({ lines, status, activeTheme, onThemeChange }: Props) {
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = bodyRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [lines]);
+
   return (
     <div className="rt-terminal">
       <header className="rt-terminal__header">
         <div className="rt-window__controls">
-          <Dot color="var(--rt-danger)" />
-          <Dot color="var(--rt-warning)" />
-          <Dot color="var(--rt-success)" />
+          <ThemeWindowControls activeTheme={activeTheme} onThemeChange={onThemeChange} />
         </div>
         <h3 className="rt-terminal__title">request-log</h3>
         <span className="rt-badge" style={{ color: statusColor[status] }}>{status}</span>
       </header>
-      <div className="rt-terminal__body">
+      <div className="rt-terminal__body" ref={bodyRef}>
         {lines.map((line, i) => (
           <div key={i} className="rt-terminal__line">
             <span className="rt-terminal__prompt">$</span>

@@ -1,4 +1,5 @@
 import type { Product } from "@/src/core/domain/entities/Product";
+import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowControls";
 
 // ── Local primitives ────────────────────────────────────────────────────────
 
@@ -45,6 +46,8 @@ interface Props {
   onSizeChange: (s: string) => void;
   onTechniqueChange: (t: string) => void;
   onSubmit: () => void;
+  activeTheme: Theme;
+  onThemeChange: (theme: Theme) => void;
 }
 
 // ── Component ───────────────────────────────────────────────────────────────
@@ -55,6 +58,7 @@ export function QuoteBuilderWindow({
   selectedAreaIds, size, technique, isLoading,
   onProductChange, onQuantityChange, onCountryChange, onPostalCodeChange,
   onAreaToggle, onSizeChange, onTechniqueChange, onSubmit,
+  activeTheme, onThemeChange,
 }: Props) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,12 +66,10 @@ export function QuoteBuilderWindow({
   }
 
   return (
-    <article className="rt-window">
+    <article className="rt-window rt-pixel-card">
       <header className="rt-window__titlebar">
         <div className="rt-window__controls">
-          <Dot color="var(--rt-danger)" />
-          <Dot color="var(--rt-warning)" />
-          <Dot color="var(--rt-success)" />
+          <ThemeWindowControls activeTheme={activeTheme} onThemeChange={onThemeChange} />
         </div>
         <h2 className="rt-window__title">quote-builder</h2>
         <span className="rt-badge">form</span>
@@ -77,11 +79,7 @@ export function QuoteBuilderWindow({
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "var(--rt-space-4)" }}>
 
           {/* Product + Quantity */}
-          <div className="rt-panel rt-panel--inset" style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--rt-space-3)",
-          }}>
+          <div className="rt-panel rt-panel--inset quote-field-row">
             <FieldGroup label="Product">
               <select
                 className="rt-input"
@@ -106,11 +104,7 @@ export function QuoteBuilderWindow({
           </div>
 
           {/* Country + Postal Code */}
-          <div className="rt-panel rt-panel--inset" style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--rt-space-3)",
-          }}>
+          <div className="rt-panel rt-panel--inset quote-field-row">
             <FieldGroup label="Country">
               <select
                 className="rt-input"
@@ -134,11 +128,7 @@ export function QuoteBuilderWindow({
           </div>
 
           {/* Size + Technique — UX only in v1, not sent to API */}
-          <div className="rt-panel rt-panel--inset" style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--rt-space-3)",
-          }}>
+          <div className="rt-panel rt-panel--inset quote-field-row">
             <FieldGroup label="Size">
               <select
                 className="rt-input"
@@ -164,7 +154,7 @@ export function QuoteBuilderWindow({
           </div>
 
           {/* Print Areas */}
-          <div className="rt-panel rt-panel--inset">
+          <div className="rt-panel rt-panel--inset" style={{ maxHeight: "16rem", overflowY: "auto" }}>
             <span className="rt-toolbar__label" style={{ display: "block", marginBottom: "var(--rt-space-2)" }}>
               Print Areas
             </span>
@@ -181,7 +171,7 @@ export function QuoteBuilderWindow({
                       padding: "var(--rt-space-2) var(--rt-space-3)",
                       borderRadius: "var(--rt-radius-md)",
                       border: `1px solid ${isSelected ? "var(--rt-primary)" : "var(--rt-glass-border-soft)"}`,
-                      background: isSelected ? "var(--rt-tint-soft)" : "transparent",
+                      background: isSelected ? "var(--rt-tint-soft)" : "var(--rt-glass-bg)",
                       cursor: "pointer",
                       transition: "border-color var(--rt-duration-fast) var(--rt-ease-standard), background var(--rt-duration-fast) var(--rt-ease-standard)",
                     }}

@@ -6,6 +6,7 @@ import type { QuoteBreakdown } from "@/src/core/domain/types/QuoteBreakdown";
 import { QuoteBuilderWindow } from "./QuoteBuilderWindow";
 import { QuoteBreakdownWindow } from "./QuoteBreakdownWindow";
 import { QuoteConsole } from "./QuoteConsole";
+import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowControls";
 
 export type QuoteStatus = "idle" | "loading" | "success" | "error";
 
@@ -26,6 +27,8 @@ export function QuoteController({ products }: Props) {
   );
   const [size, setSize] = useState<string>(first?.sizes[0] ?? "");
   const [technique, setTechnique] = useState<string>(first?.defaultTechnique ?? "");
+
+  const [activeTheme, setActiveTheme] = useState<Theme>("phosphor");
 
   // ── Request state ────────────────────────────────────────────
   const [status, setStatus] = useState<QuoteStatus>("idle");
@@ -98,7 +101,8 @@ export function QuoteController({ products }: Props) {
     }
   }
 
-  function handleThemeChange(theme: string) {
+  function handleThemeChange(theme: Theme) {
+    setActiveTheme(theme);
     document.documentElement.setAttribute("data-rt-theme", theme);
   }
 
@@ -108,31 +112,13 @@ export function QuoteController({ products }: Props) {
       <div style={{ marginBottom: "var(--rt-space-6)" }}>
         <div className="rt-toolbar" style={{ marginBottom: "var(--rt-space-3)" }}>
           <div className="rt-toolbar__group">
-            <span className="rt-badge">demo</span>
-            <h1 style={{
-              margin: 0,
-              fontFamily: "var(--rt-font-display)",
-              fontSize: "var(--rt-text-xl)",
-              letterSpacing: "0.03em",
-              lineHeight: "var(--rt-line-tight)",
-            }}>
-              dynamic-pricing
-            </h1>
+            <span className="rt-badge">Laboratory #1</span>
           </div>
-          <div className="rt-toolbar__group">
-            <span className="rt-toolbar__label">theme</span>
-            {(["phosphor", "ivory", "bigblue"] as const).map((t) => (
-              <button
-                key={t}
-                className="rt-btn rt-btn--ghost"
-                onClick={() => handleThemeChange(t)}
-                style={{ fontSize: "var(--rt-text-xs)", padding: "6px 10px" }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+          <ThemeWindowControls activeTheme={activeTheme} onThemeChange={handleThemeChange} />
         </div>
+        <h1 id="theme-title" className="m-3 text-4xl font-semibold tracking-tight text-[var(--rt-text)]">
+          dynamic-pricing
+        </h1>
         <p style={{
           margin: 0,
           color: "var(--rt-text-muted)",
@@ -144,12 +130,10 @@ export function QuoteController({ products }: Props) {
       </div>
 
       {/* ── 2-window grid ──────────────────────────────────────── */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "var(--rt-space-5)",
-        marginBottom: "var(--rt-space-5)",
-      }}>
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 flex-1 min-h-0 overflow-y-auto"
+        style={{ gap: "var(--rt-space-5)", marginBottom: "var(--rt-space-5)" }}
+      >
         <QuoteBuilderWindow
           products={products}
           selectedProduct={selectedProduct}
@@ -169,12 +153,20 @@ export function QuoteController({ products }: Props) {
           onSizeChange={setSize}
           onTechniqueChange={setTechnique}
           onSubmit={handleSubmit}
+          activeTheme={activeTheme}
+          onThemeChange={handleThemeChange}
         />
-        <QuoteBreakdownWindow status={status} breakdown={breakdown} error={error} />
+        <QuoteBreakdownWindow
+          status={status}
+          breakdown={breakdown}
+          error={error}
+          activeTheme={activeTheme}
+          onThemeChange={handleThemeChange}
+        />
       </div>
 
       {/* ── Console ────────────────────────────────────────────── */}
-      <QuoteConsole lines={log} status={status} />
+      <QuoteConsole lines={log} status={status} activeTheme={activeTheme} onThemeChange={handleThemeChange} />
     </main>
   );
 }
