@@ -30,15 +30,11 @@ describe("resolveZone", () => {
   });
 
   it("throws when the rule list is empty", () => {
-    expect(() =>
-      resolveZone([], { country: "US", postalCode: "10001" })
-    ).toThrow();
+    expect(() => resolveZone([], { country: "US", postalCode: "10001" })).toThrow();
   });
 
   it("throws when no rule matches the country", () => {
     const usOnly: ZoneRule[] = [{ country: "US", ratePct: 0 }];
-    expect(() =>
-      resolveZone(usOnly, { country: "CA", postalCode: "V6B" })
-    ).toThrow();
+    expect(() => resolveZone(usOnly, { country: "CA", postalCode: "V6B" })).toThrow();
   });
 });

@@ -16,10 +16,7 @@ function postalErrors(country: "US" | "CA", postalCode: string): string[] {
   const result = quoteRequestSchema.safeParse(makeBody(country, postalCode));
   if (result.success) return [];
   return result.error.issues
-    .filter(
-      (issue) =>
-        issue.path[0] === "location" && issue.path[1] === "postalCode"
-    )
+    .filter((issue) => issue.path[0] === "location" && issue.path[1] === "postalCode")
     .map((issue) => issue.message);
 }
 

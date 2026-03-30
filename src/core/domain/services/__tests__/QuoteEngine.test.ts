@@ -29,10 +29,16 @@ const product: Product = {
   allowedTechniques: ["screen-print", "dtf"],
   sizes: ["S", "M", "L", "XL"],
   views: { front: "/mock/tshirt-front.png", back: "/mock/tshirt-back.png" },
-  variations: [{ colorName: "White", colorHex: "#ffffff", views: { front: "/mock/tshirt-white-front.png", back: "/mock/tshirt-white-back.png" } }],
+  variations: [
+    {
+      colorName: "White",
+      colorHex: "#ffffff",
+      views: { front: "/mock/tshirt-white-front.png", back: "/mock/tshirt-white-back.png" },
+    },
+  ],
   areas: [
     { id: "front", view: "front", label: "Front Chest", addOnPerUnit: 0.5 },
-    { id: "back",  view: "back",  label: "Back Center", addOnPerUnit: 0.75 },
+    { id: "back", view: "back", label: "Back Center", addOnPerUnit: 0.75 },
   ],
 };
 

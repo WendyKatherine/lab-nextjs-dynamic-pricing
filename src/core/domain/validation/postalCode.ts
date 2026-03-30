@@ -47,13 +47,15 @@ function validateCA(postalCode: string): PostalValidationResult {
 
 export function validatePostalCodeFormat(
   country: CountryCode,
-  postalCode: string,
+  postalCode: string
 ): PostalValidationResult {
   if (!postalCode || postalCode.trim().length === 0) {
     return { valid: false, reason: "Postal code is required" };
   }
   switch (country) {
-    case "US": return validateUS(postalCode);
-    case "CA": return validateCA(postalCode);
+    case "US":
+      return validateUS(postalCode);
+    case "CA":
+      return validateCA(postalCode);
   }
 }

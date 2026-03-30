@@ -9,7 +9,7 @@
     "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     "views": {
       "front": "/mock/tshirt-blank-front.png",
-      "back":  "/mock/tshirt-blank-back.png"
+      "back": "/mock/tshirt-blank-back.png"
     },
     "variations": [
       {
@@ -17,7 +17,7 @@
         "colorHex": "#f5f5f5",
         "views": {
           "front": "/mock/tshirt-white-front.png",
-          "back":  "/mock/tshirt-white-back.png"
+          "back": "/mock/tshirt-white-back.png"
         }
       },
       {
@@ -25,13 +25,13 @@
         "colorHex": "#1a1a1a",
         "views": {
           "front": "/mock/tshirt-black-front.png",
-          "back":  "/mock/tshirt-black-back.png"
+          "back": "/mock/tshirt-black-back.png"
         }
       }
     ],
     "areas": [
-      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.00 },
-      { "id": "back-center", "view": "back",  "label": "Back Center",  "addOnPerUnit": 0.50 }
+      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.0 },
+      { "id": "back-center", "view": "back", "label": "Back Center", "addOnPerUnit": 0.5 }
     ]
   },
   {
@@ -44,8 +44,8 @@
     "sizes": ["S", "M", "L", "XL", "2XL"],
     "views": {
       "front": "/mock/hoodie-blank-front.png",
-      "back":  "/mock/hoodie-blank-back.png",
-      "left":  "/mock/hoodie-blank-left.png"
+      "back": "/mock/hoodie-blank-back.png",
+      "left": "/mock/hoodie-blank-left.png"
     },
     "variations": [
       {
@@ -53,8 +53,8 @@
         "colorHex": "#1a1a1a",
         "views": {
           "front": "/mock/hoodie-black-front.png",
-          "back":  "/mock/hoodie-black-back.png",
-          "left":  "/mock/hoodie-black-left.png"
+          "back": "/mock/hoodie-black-back.png",
+          "left": "/mock/hoodie-black-left.png"
         }
       },
       {
@@ -62,15 +62,15 @@
         "colorHex": "#1b2a4a",
         "views": {
           "front": "/mock/hoodie-navy-front.png",
-          "back":  "/mock/hoodie-navy-back.png",
-          "left":  "/mock/hoodie-navy-left.png"
+          "back": "/mock/hoodie-navy-back.png",
+          "left": "/mock/hoodie-navy-left.png"
         }
       }
     ],
     "areas": [
-      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.00 },
-      { "id": "back-center", "view": "back",  "label": "Back Center",  "addOnPerUnit": 0.75 },
-      { "id": "left-sleeve", "view": "left",  "label": "Left Sleeve",  "addOnPerUnit": 1.25 }
+      { "id": "front-chest", "view": "front", "label": "Front Chest", "addOnPerUnit": 0.0 },
+      { "id": "back-center", "view": "back", "label": "Back Center", "addOnPerUnit": 0.75 },
+      { "id": "left-sleeve", "view": "left", "label": "Left Sleeve", "addOnPerUnit": 1.25 }
     ]
   },
   {
@@ -83,7 +83,7 @@
     "sizes": ["OS"],
     "views": {
       "front": "/mock/hat-blank-front.png",
-      "back":  "/mock/hat-blank-back.png"
+      "back": "/mock/hat-blank-back.png"
     },
     "variations": [
       {
@@ -91,7 +91,7 @@
         "colorHex": "#1a1a1a",
         "views": {
           "front": "/mock/hat-black-front.png",
-          "back":  "/mock/hat-black-back.png"
+          "back": "/mock/hat-black-back.png"
         }
       },
       {
@@ -99,13 +99,13 @@
         "colorHex": "#c3b091",
         "views": {
           "front": "/mock/hat-khaki-front.png",
-          "back":  "/mock/hat-khaki-back.png"
+          "back": "/mock/hat-khaki-back.png"
         }
       }
     ],
     "areas": [
-      { "id": "front-panel", "view": "front", "label": "Front Panel", "addOnPerUnit": 0.00 },
-      { "id": "back-panel",  "view": "back",  "label": "Back Panel",  "addOnPerUnit": 0.50 }
+      { "id": "front-panel", "view": "front", "label": "Front Panel", "addOnPerUnit": 0.0 },
+      { "id": "back-panel", "view": "back", "label": "Back Panel", "addOnPerUnit": 0.5 }
     ]
   }
 ]

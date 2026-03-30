@@ -1,7 +1,5 @@
-import QuotePage from "@/app/quote/page"
+import QuotePage from "@/app/quote/page";
 
 export default function Home() {
-  return (
-    <QuotePage />
-  );
+  return <QuotePage />;
 }

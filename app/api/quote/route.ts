@@ -11,19 +11,21 @@ const selectedAreaSchema = z.object({
   areaId: z.string().min(1),
 });
 
-const locationSchema = z.object({
-  country: z.enum(["US", "CA"]),
-  postalCode: z.string().min(1),
-}).superRefine((val, ctx) => {
-  const result = validatePostalCodeFormat(val.country, val.postalCode);
-  if (!result.valid) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      path: ["postalCode"],
-      message: result.reason,
-    });
-  }
-});
+const locationSchema = z
+  .object({
+    country: z.enum(["US", "CA"]),
+    postalCode: z.string().min(1),
+  })
+  .superRefine((val, ctx) => {
+    const result = validatePostalCodeFormat(val.country, val.postalCode);
+    if (!result.valid) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["postalCode"],
+        message: result.reason,
+      });
+    }
+  });
 
 export const quoteRequestSchema = z.object({
   productId: z.string().min(1),
@@ -58,12 +60,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unexpected error";
     const isNotFound =
-      message.startsWith("Product not found") ||
-      message.startsWith("No zone rule found");
+      message.startsWith("Product not found") || message.startsWith("No zone rule found");
 
-    return NextResponse.json(
-      { error: message },
-      { status: isNotFound ? 404 : 500 }
-    );
+    return NextResponse.json({ error: message }, { status: isNotFound ? 404 : 500 });
   }
 }

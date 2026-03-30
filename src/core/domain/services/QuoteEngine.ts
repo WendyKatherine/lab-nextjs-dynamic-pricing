@@ -25,15 +25,12 @@ export function calculateQuote(
 
   const locationCount = input.selectedAreas.length;
   const extraLocationsCost =
-    Math.max(0, locationCount - 1) *
-    (setupCost + priceBook.applicationPerUnit * input.quantity);
+    Math.max(0, locationCount - 1) * (setupCost + priceBook.applicationPerUnit * input.quantity);
 
   const addOnsCost = input.selectedAreas.reduce((sum, selected) => {
     const area = product.areas.find((a) => a.id === selected.areaId);
     if (!area) {
-      throw new Error(
-        `Area "${selected.areaId}" is not available on product "${product.id}"`
-      );
+      throw new Error(`Area "${selected.areaId}" is not available on product "${product.id}"`);
     }
     return sum + area.addOnPerUnit * input.quantity;
   }, 0);

@@ -2,6 +2,6 @@
   { "country": "US", "ratePct": 0 },
   { "country": "CA", "prefix": "M", "ratePct": 13 },
   { "country": "CA", "prefix": "V", "ratePct": 12 },
-  { "country": "CA", "prefix": "T", "ratePct": 5  },
+  { "country": "CA", "prefix": "T", "ratePct": 5 },
   { "country": "CA", "ratePct": 15 }
 ]

@@ -5,6 +5,7 @@ A portfolio-grade **Next.js + TypeScript** Laboratory that showcases a backend-d
 This project simulates a quote system where the user selects a product, quantity, print areas, and delivery location (**US/CA only**), and receives a reproducible price breakdown calculated on the backend.
 
 The goal of this lab is to demonstrate:
+
 - clean domain modeling
 - backend as pricing source of truth
 - country-aware postal code validation
@@ -38,17 +39,20 @@ The goal of this lab is to demonstrate:
 ## Tech Stack
 
 ### App
+
 - Next.js (App Router)
 - TypeScript
 - React
 - Tailwind CSS
 
 ### Domain / Validation
+
 - Pure domain services
 - Zod
 - Vitest
 
 ### UI / Design System
+
 - Shared local design system package:
   `@wendy/retro-tech-foundation`
 
@@ -59,6 +63,7 @@ The goal of this lab is to demonstrate:
 This demo was built to recreate a real-world pricing and customization problem in a simplified but defendable way.
 
 It focuses on the kind of engineering decisions needed in production systems:
+
 - separating domain logic from delivery/UI
 - keeping pricing logic on the backend
 - validating user input both in frontend and backend
@@ -69,6 +74,7 @@ It focuses on the kind of engineering decisions needed in production systems:
 ## How It Works
 
 ### Quote Flow
+
 1. User selects a product
 2. User chooses quantity
 3. User selects print areas
@@ -80,7 +86,9 @@ It focuses on the kind of engineering decisions needed in production systems:
 9. UI renders a full price breakdown
 
 ### Pricing Inputs
+
 The quote is based on:
+
 - product pricing category
 - quantity
 - selected print areas
@@ -126,6 +134,7 @@ Example response:
 This demo supports **US** and **CA** only.
 
 ### Accepted formats
+
 - **US**: `12345` or `12345-6789`
 - **CA**: `A1A 1A1` or `A1A1A1`
 
@@ -152,6 +161,7 @@ This project uses a lightweight layered architecture:
 - `app/quote` → UI components and user flow
 
 ### Domain Model
+
 See the domain diagram here:
 
 [Domain Model](./docs/domain-model.md)
@@ -190,10 +200,7 @@ Creates a quote breakdown for a selected product configuration.
 {
   "productId": "prod-hoodie-001",
   "quantity": 224,
-  "selectedAreas": [
-    { "areaId": "front-chest" },
-    { "areaId": "back-center" }
-  ],
+  "selectedAreas": [{ "areaId": "front-chest" }, { "areaId": "back-center" }],
   "location": {
     "country": "CA",
     "postalCode": "M5H 2N2"
@@ -202,9 +209,11 @@ Creates a quote breakdown for a selected product configuration.
 ```
 
 ### Success response
+
 Returns a structured quote breakdown with total and unit price.
 
 ### Validation errors
+
 Returns `422` with field-level details when request data is invalid.
 
 ---
@@ -212,25 +221,30 @@ Returns `422` with field-level details when request data is invalid.
 ## Running Locally
 
 ### Requirements
+
 - Node 20+
 - npm
 
 ### Install
+
 ```bash
 npm install
 ```
 
 ### Run development server
+
 ```bash
 npm run dev
 ```
 
 ### Run tests
+
 ```bash
 npm test
 ```
 
 ### Build
+
 ```bash
 npm run build
 ```
@@ -240,6 +254,7 @@ npm run build
 ## Testing
 
 Current coverage includes:
+
 - domain pricing services
 - zone resolution
 - volume tier resolution
@@ -247,6 +262,7 @@ Current coverage includes:
 - request schema validation for quote route
 
 Planned:
+
 - end-to-end tests for the quote flow
 
 ---
@@ -256,6 +272,7 @@ Planned:
 The UI uses a custom retro-tech visual foundation inspired by classic Macintosh interfaces and early desktop software aesthetics.
 
 This was intentionally built as a reusable design system so the same visual language can later be shared across:
+
 - Next.js demos
 - Vue demos
 - Ionic/mobile demos
@@ -265,6 +282,7 @@ This was intentionally built as a reusable design system so the same visual lang
 ## Roadmap
 
 Possible next improvements:
+
 - provider-based postal code verification
 - cart/session layer
 - checkout simulation
@@ -280,6 +298,7 @@ Possible next improvements:
 This project is part of a broader portfolio effort to translate real product engineering experience into public, explainable, and defendable code samples.
 
 It is meant to demonstrate how I think about:
+
 - domain logic
 - frontend/backend integration
 - validation

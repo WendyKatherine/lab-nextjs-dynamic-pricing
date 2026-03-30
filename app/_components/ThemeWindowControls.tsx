@@ -34,11 +34,7 @@ interface Props {
   className?: string;
 }
 
-export function ThemeWindowControls({
-  activeTheme,
-  onThemeChange,
-  className = "",
-}: Props) {
+export function ThemeWindowControls({ activeTheme, onThemeChange, className = "" }: Props) {
   return (
     <div
       className={`rt-window__controls rt-theme-controls ${className}`.trim()}

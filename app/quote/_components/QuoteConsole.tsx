@@ -4,22 +4,24 @@ import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowCo
 
 function Dot({ color }: { color: string }) {
   return (
-    <span style={{
-      display: "block",
-      width: 10,
-      height: 10,
-      borderRadius: "50%",
-      background: color,
-      opacity: 0.8,
-    }} />
+    <span
+      style={{
+        display: "block",
+        width: 10,
+        height: 10,
+        borderRadius: "50%",
+        background: color,
+        opacity: 0.8,
+      }}
+    />
   );
 }
 
 const statusColor: Record<QuoteStatus, string> = {
-  idle:    "var(--rt-text-muted)",
+  idle: "var(--rt-text-muted)",
   loading: "var(--rt-warning)",
   success: "var(--rt-success)",
-  error:   "var(--rt-danger)",
+  error: "var(--rt-danger)",
 };
 
 interface Props {
@@ -44,7 +46,9 @@ export function QuoteConsole({ lines, status, activeTheme, onThemeChange }: Prop
           <ThemeWindowControls activeTheme={activeTheme} onThemeChange={onThemeChange} />
         </div>
         <h3 className="rt-terminal__title">request-log</h3>
-        <span className="rt-badge" style={{ color: statusColor[status] }}>{status}</span>
+        <span className="rt-badge" style={{ color: statusColor[status] }}>
+          {status}
+        </span>
       </header>
       <div className="rt-terminal__body" ref={bodyRef}>
         {lines.map((line, i) => (

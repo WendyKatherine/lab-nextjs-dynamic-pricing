@@ -17,7 +17,9 @@
   border-radius: 50%;
   padding: 0;
   cursor: pointer;
-  transition: opacity 120ms ease, box-shadow 120ms ease;
+  transition:
+    opacity 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .rt-theme-dot:focus-visible {
@@ -26,10 +28,10 @@
 }
 
 [data-rt-theme="phosphor"] {
-  --rt-glass-bg:             rgba(255, 255, 255, 0.18);
-  --rt-glass-border:         rgba(255, 255, 255, 0.45);
-  --rt-glass-border-soft:    rgba(255, 255, 255, 0.28);
-  --rt-glass-highlight:      rgba(255, 255, 255, 0.72);
+  --rt-glass-bg: rgba(255, 255, 255, 0.18);
+  --rt-glass-border: rgba(255, 255, 255, 0.45);
+  --rt-glass-border-soft: rgba(255, 255, 255, 0.28);
+  --rt-glass-highlight: rgba(255, 255, 255, 0.72);
   --rt-glass-highlight-soft: rgba(255, 255, 255, 0.28);
 }
 

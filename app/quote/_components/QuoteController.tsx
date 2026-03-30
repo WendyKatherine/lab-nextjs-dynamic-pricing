@@ -145,15 +145,20 @@ export function QuoteController({ products }: Props) {
           </div>
           <ThemeWindowControls activeTheme={activeTheme} onThemeChange={handleThemeChange} />
         </div>
-        <h1 id="theme-title" className="m-3 text-4xl font-semibold tracking-tight text-[var(--rt-text)]">
+        <h1
+          id="theme-title"
+          className="m-3 text-4xl font-semibold tracking-tight text-[var(--rt-text)]"
+        >
           dynamic-pricing
         </h1>
-        <p style={{
-          margin: 0,
-          color: "var(--rt-text-muted)",
-          fontSize: "var(--rt-text-sm)",
-          paddingInline: "var(--rt-space-1)",
-        }}>
+        <p
+          style={{
+            margin: 0,
+            color: "var(--rt-text-muted)",
+            fontSize: "var(--rt-text-sm)",
+            paddingInline: "var(--rt-space-1)",
+          }}
+        >
           select a product, configure your order, and get a live price breakdown · US / CA only
         </p>
       </div>
@@ -197,7 +202,12 @@ export function QuoteController({ products }: Props) {
       </div>
 
       {/* ── Console ────────────────────────────────────────────── */}
-      <QuoteConsole lines={log} status={status} activeTheme={activeTheme} onThemeChange={handleThemeChange} />
+      <QuoteConsole
+        lines={log}
+        status={status}
+        activeTheme={activeTheme}
+        onThemeChange={handleThemeChange}
+      />
     </main>
   );
 }

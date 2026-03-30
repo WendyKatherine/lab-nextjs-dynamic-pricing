@@ -1,17 +1,17 @@
 {
   "version": "v1",
-  "setupCost": 25.00,
-  "applicationPerUnit": 2.50,
+  "setupCost": 25.0,
+  "applicationPerUnit": 2.5,
   "baseCostsByCategory": {
-    "tshirt": 8.00,
-    "hoodie": 18.00,
-    "hat": 12.00
+    "tshirt": 8.0,
+    "hoodie": 18.0,
+    "hat": 12.0
   },
   "volumeTiers": [
-    { "minQty": 1,   "maxQty": 11,  "multiplier": 1.00 },
-    { "minQty": 12,  "maxQty": 23,  "multiplier": 0.90 },
-    { "minQty": 24,  "maxQty": 47,  "multiplier": 0.82 },
-    { "minQty": 48,  "maxQty": 99,  "multiplier": 0.75 },
-    { "minQty": 100,               "multiplier": 0.68 }
+    { "minQty": 1, "maxQty": 11, "multiplier": 1.0 },
+    { "minQty": 12, "maxQty": 23, "multiplier": 0.9 },
+    { "minQty": 24, "maxQty": 47, "multiplier": 0.82 },
+    { "minQty": 48, "maxQty": 99, "multiplier": 0.75 },
+    { "minQty": 100, "multiplier": 0.68 }
   ]
 }

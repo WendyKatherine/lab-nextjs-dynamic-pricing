@@ -5,14 +5,16 @@ import { ThemeWindowControls, type Theme } from "@/app/_components/ThemeWindowCo
 
 function Dot({ color }: { color: string }) {
   return (
-    <span style={{
-      display: "block",
-      width: 10,
-      height: 10,
-      borderRadius: "50%",
-      background: color,
-      opacity: 0.8,
-    }} />
+    <span
+      style={{
+        display: "block",
+        width: 10,
+        height: 10,
+        borderRadius: "50%",
+        background: color,
+        opacity: 0.8,
+      }}
+    />
   );
 }
 
@@ -55,12 +57,28 @@ interface Props {
 // ── Component ───────────────────────────────────────────────────────────────
 
 export function QuoteBuilderWindow({
-  products, selectedProduct,
-  productId, quantity, country, postalCode, postalCodeError,
-  selectedAreaIds, size, technique, isLoading,
-  onProductChange, onQuantityChange, onCountryChange, onPostalCodeChange, onPostalCodeBlur,
-  onAreaToggle, onSizeChange, onTechniqueChange, onSubmit,
-  activeTheme, onThemeChange,
+  products,
+  selectedProduct,
+  productId,
+  quantity,
+  country,
+  postalCode,
+  postalCodeError,
+  selectedAreaIds,
+  size,
+  technique,
+  isLoading,
+  onProductChange,
+  onQuantityChange,
+  onCountryChange,
+  onPostalCodeChange,
+  onPostalCodeBlur,
+  onAreaToggle,
+  onSizeChange,
+  onTechniqueChange,
+  onSubmit,
+  activeTheme,
+  onThemeChange,
 }: Props) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -79,7 +97,6 @@ export function QuoteBuilderWindow({
 
       <div className="rt-window__body">
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "var(--rt-space-4)" }}>
-
           {/* Product + Quantity */}
           <div className="rt-panel rt-panel--inset quote-field-row">
             <FieldGroup label="Product">
@@ -89,7 +106,9 @@ export function QuoteBuilderWindow({
                 onChange={(e) => onProductChange(e.target.value)}
               >
                 {products.map((p) => (
-                  <option key={p.id} value={p.id}>{p.name}</option>
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
                 ))}
               </select>
             </FieldGroup>
@@ -143,7 +162,9 @@ export function QuoteBuilderWindow({
                 onChange={(e) => onSizeChange(e.target.value)}
               >
                 {selectedProduct.sizes.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
                 ))}
               </select>
             </FieldGroup>
@@ -154,15 +175,23 @@ export function QuoteBuilderWindow({
                 onChange={(e) => onTechniqueChange(e.target.value)}
               >
                 {selectedProduct.allowedTechniques.map((t) => (
-                  <option key={t} value={t}>{t}</option>
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
                 ))}
               </select>
             </FieldGroup>
           </div>
 
           {/* Print Areas */}
-          <div className="rt-panel rt-panel--inset" style={{ maxHeight: "16rem", overflowY: "auto" }}>
-            <span className="rt-toolbar__label" style={{ display: "block", marginBottom: "var(--rt-space-2)" }}>
+          <div
+            className="rt-panel rt-panel--inset"
+            style={{ maxHeight: "16rem", overflowY: "auto" }}
+          >
+            <span
+              className="rt-toolbar__label"
+              style={{ display: "block", marginBottom: "var(--rt-space-2)" }}
+            >
               Print Areas
             </span>
             <div style={{ display: "grid", gap: "var(--rt-space-2)" }}>
@@ -180,7 +209,8 @@ export function QuoteBuilderWindow({
                       border: `1px solid ${isSelected ? "var(--rt-primary)" : "var(--rt-glass-border-soft)"}`,
                       background: isSelected ? "var(--rt-tint-soft)" : "var(--rt-glass-bg)",
                       cursor: "pointer",
-                      transition: "border-color var(--rt-duration-fast) var(--rt-ease-standard), background var(--rt-duration-fast) var(--rt-ease-standard)",
+                      transition:
+                        "border-color var(--rt-duration-fast) var(--rt-ease-standard), background var(--rt-duration-fast) var(--rt-ease-standard)",
                     }}
                   >
                     <input
@@ -190,10 +220,18 @@ export function QuoteBuilderWindow({
                       style={{ accentColor: "var(--rt-primary)", width: 14, height: 14 }}
                     />
                     <span style={{ flex: 1, fontSize: "var(--rt-text-sm)" }}>{area.label}</span>
-                    <span style={{ fontSize: "var(--rt-text-xs)", color: "var(--rt-text-muted)", fontFamily: "var(--rt-font-mono)" }}>
+                    <span
+                      style={{
+                        fontSize: "var(--rt-text-xs)",
+                        color: "var(--rt-text-muted)",
+                        fontFamily: "var(--rt-font-mono)",
+                      }}
+                    >
                       +${area.addOnPerUnit.toFixed(2)}/unit
                     </span>
-                    <span className="rt-badge" style={{ fontSize: "var(--rt-text-xs)" }}>{area.view}</span>
+                    <span className="rt-badge" style={{ fontSize: "var(--rt-text-xs)" }}>
+                      {area.view}
+                    </span>
                   </label>
                 );
               })}
@@ -208,7 +246,6 @@ export function QuoteBuilderWindow({
           >
             {isLoading ? "calculating…" : "calculate quote →"}
           </button>
-
         </form>
       </div>
     </article>
